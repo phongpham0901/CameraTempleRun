@@ -4,28 +4,7 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    /*
-    public GameObject player;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.position = player.transform.position + new Vector3(0, 5, -7);
-        Invoke("Follow", 1f);
-    }
-
-    void Follow()
-    {
-            transform.position = player.transform.position + new Vector3(0, 5, -9);
-            transform.rotation = player.transform.rotation;
-    }*/
-
-
+    
     public Transform player;         // Transform của người chơi
     public float smoothSpeed = 0.125f;   // Tốc độ di chuyển của camera
     public float rotationSpeed = 5f;  // Tốc độ xoay của camera
