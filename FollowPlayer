@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FollowPlayer : MonoBehaviour
+{
+    /*
+    public GameObject player;
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //transform.position = player.transform.position + new Vector3(0, 5, -7);
+        Invoke("Follow", 1f);
+    }
+
+    void Follow()
+    {
+            transform.position = player.transform.position + new Vector3(0, 5, -9);
+            transform.rotation = player.transform.rotation;
+    }*/
+
+
+    public Transform player;         // Transform của người chơi
+    public float smoothSpeed = 0.125f;   // Tốc độ di chuyển của camera
+    public float rotationSpeed = 5f;  // Tốc độ xoay của camera
+
+    public Vector3 offset;           // Khoảng cách của camera so với người chơi
+    public Vector3 offset1;
+
+    void LateUpdate()
+    {
+        // Tính toán vị trí mục tiêu cho camera
+        Vector3 desiredPosition = player.position + offset;
+        // Sử dụng hàm Lerp để di chuyển mượt mà camera đến vị trí mục tiêu
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime * 5f);
+        transform.position = smoothedPosition;
+
+        // Tính toán hướng nhìn từ camera tới người chơi
+        Quaternion lookRotation = Quaternion.LookRotation((player.position - transform.position) + offset1);
+        // Xoay mượt mà camera theo hướng nhìn mới
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+    }
+}
